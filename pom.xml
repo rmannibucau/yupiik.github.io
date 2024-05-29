@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.yupiik.site</groupId>
@@ -159,7 +159,10 @@
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.3.0</version>
       </plugin>
-      <plugin><!-- mvn [compile] yupiik-tools:serve-minisite -e [-Dyupiik.projects.generate.showSkipped=true] -->
+      <plugin>
+        <!--
+          mvn [compile] yupiik-tools:serve-minisite -e [-Dyupiik.projects.generate.showSkipped=true]
+        -->
         <groupId>io.yupiik.maven</groupId>
         <artifactId>yupiik-tools-maven-plugin</artifactId>
         <executions> <!-- write/human mode: $ mvn compile yupiik-tools:serve-minisite -e -->
@@ -172,20 +175,44 @@
           </execution>
         </executions>
         <configuration>
+          <customScripts>
+            &lt;script&gt;$('.is-blog').addClass('container');&lt;/script&gt;
+          </customScripts>
+          <customHead>
+            &lt;link rel="stylesheet"
+            href="{{base}}/css/yupiik.github.io.css?v=${project.version}"&gt;
+            &lt;!-- Matomo --&gt;
+            &lt;script&gt;
+            var _paq = window._paq = window._paq || [];
+            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+            var u="https://yupiik.matomo.cloud/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.async=true; g.src='//cdn.matomo.cloud/yupiik.matomo.cloud/matomo.js';
+            s.parentNode.insertBefore(g,s);
+            })();
+            &lt;/script&gt;
+            &lt;!-- End Matomo Code --&gt;
+          </customHead>
           <title>Yupiik Open Source Software</title>
           <logoText></logoText>
           <requires>
-              <require>asciidoctor-diagram</require>
+            <require>asciidoctor-diagram</require>
           </requires>
           <attributes>
-              <partialsdir>content/_partials</partialsdir>
-              <icons>font</icons>
-              <project-starter-version>2</project-starter-version>
+            <partialsdir>content/_partials</partialsdir>
+            <icons>font</icons>
+            <project-starter-version>2</project-starter-version>
           </attributes>
           <gravatar>
             <url>https://www.gravatar.com/avatar/%s?d=identicon&amp;size=75</url>
           </gravatar>
-          <description>Yupiik Open Source Portal. Discover all Yupiik Open Source Software and Libraries.</description>
+          <description>Yupiik Open Source Portal. Discover all Yupiik Open Source Software and
+            Libraries.</description>
           <copyright>© 2024 &lt;strong&gt;Yupiik&lt;/strong&gt;. All Rights Reserved</copyright>
           <generateIndex>false</generateIndex>
           <generateSiteMap>true</generateSiteMap>
@@ -197,11 +224,21 @@
           <siteBase>/</siteBase>
           <templateExtensionPoints>
             <socialLinks>
-              &lt;li class="list-inline-item"&gt;&lt;a title="LinkedIn" target="_blank" href="https://www.linkedin.com/company/yupiik/"&gt;&lt;i class="fab fa-linkedin fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
-              &lt;li class="list-inline-item"&gt;&lt;a title="Twitter" target="_blank" href="https://twitter.com/Yupiik/"&gt;&lt;i class="fab fa-twitter fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
-              &lt;li class="list-inline-item"&gt;&lt;a title="Github" target="_blank" href="https://www.github.com/yupiik"&gt;&lt;i class="fab fa-github fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
-              &lt;li class="list-inline-item"&gt;&lt;a title="Sitemap" target="_blank" href="/sitemap.xml"&gt;&lt;i class="fas fa-rss-square fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
-              &lt;li class="list-inline-item"&gt;&lt;a title="Yupiik" target="_blank" href="https://www.yupiik.com/"&gt;&lt;img class="yupiik-logo" src="/images/yupiik.png"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;li class="list-inline-item"&gt;&lt;a title="LinkedIn" target="_blank"
+              href="https://www.linkedin.com/company/yupiik/"&gt;&lt;i class="fab fa-linkedin
+              fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;li class="list-inline-item"&gt;&lt;a title="Twitter" target="_blank"
+              href="https://twitter.com/Yupiik/"&gt;&lt;i class="fab fa-twitter
+              fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;li class="list-inline-item"&gt;&lt;a title="Github" target="_blank"
+              href="https://www.github.com/yupiik"&gt;&lt;i class="fab fa-github
+              fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;li class="list-inline-item"&gt;&lt;a title="Sitemap" target="_blank"
+              href="/sitemap.xml"&gt;&lt;i class="fas fa-rss-square
+              fa-fw"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;li class="list-inline-item"&gt;&lt;a title="Yupiik" target="_blank"
+              href="https://www.yupiik.com/"&gt;&lt;img class="yupiik-logo"
+              src="/images/yupiik.png"&gt;&lt;/img&gt;&lt;/a&gt;&lt;/li&gt;
             </socialLinks>
           </templateExtensionPoints>
           <blogPageSize>5</blogPageSize>
@@ -228,6 +265,16 @@
             </Other>
           </blogCategoriesCustomizations>
           <preActions>
+            <action>
+              <type>io.yupiik.site.GenerateProjectsPage</type>
+              <configuration>
+                <serverId>${githubServerId}</serverId>
+                <settingsXml>${yupiik.settings.xml}</settingsXml>
+                <active>${yupiik.projects.generate}</active>
+                <showSkipped>${yupiik.projects.generate.showSkipped}</showSkipped>
+                <overridesLocations>${project.basedir}/src/main/minisite/oss/metadata/overrides</overridesLocations>
+              </configuration>
+            </action>
           </preActions>
         </configuration>
       </plugin>
@@ -243,7 +290,9 @@
             <groupId>io.yupiik.maven</groupId>
             <artifactId>yupiik-tools-maven-plugin</artifactId>
             <executions>
-              <execution> <!-- mvn yupiik-tools:generate-blog-post-releases@global -Pgenerate-blog-post-releases -Dyupiik.generate-blog-post-releases.from=01/10/2022 -Dyupiik.generate-blog-post-releases.to=01/12/2022 -->
+              <execution> <!-- mvn yupiik-tools:generate-blog-post-releases@global
+                -Pgenerate-blog-post-releases -Dyupiik.generate-blog-post-releases.from=01/10/2022
+                -Dyupiik.generate-blog-post-releases.to=01/12/2022 -->
                 <id>global</id>
                 <phase>initialize</phase>
                 <goals>
@@ -281,7 +330,8 @@
             <groupId>io.yupiik.maven</groupId>
             <artifactId>yupiik-tools-maven-plugin</artifactId>
             <executions>
-              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@yuc -Psynchronize-github-releases -->
+              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@yuc
+                -Psynchronize-github-releases -->
                 <id>yuc</id>
                 <phase>initialize</phase>
                 <goals>
@@ -298,18 +348,19 @@
                       <artifacts>
                         <artifact>
                           <type>pom</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                       </artifacts>
                     </artifact>
                   </artifacts>
                 </configuration>
               </execution>
-              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@fusion -Psynchronize-github-releases -->
+              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@fusion
+                -Psynchronize-github-releases -->
                 <id>fusion</id>
                 <phase>initialize</phase>
                 <goals>
@@ -326,18 +377,20 @@
                       <artifacts>
                         <artifact>
                           <type>pom</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                       </artifacts>
                     </artifact>
                   </artifacts>
                 </configuration>
               </execution>
-              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@kubernetes-java-descriptors -Psynchronize-github-releases -->
+              <execution> <!-- mvn
+                yupiik-tools:synchronize-github-releases@kubernetes-java-descriptors
+                -Psynchronize-github-releases -->
                 <id>kubernetes-java-descriptors</id>
                 <phase>initialize</phase>
                 <goals>
@@ -354,18 +407,19 @@
                       <artifacts>
                         <artifact>
                           <type>pom</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                       </artifacts>
                     </artifact>
                   </artifacts>
                 </configuration>
               </execution>
-              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@yupiik-tools -Psynchronize-github-releases -->
+              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@yupiik-tools
+                -Psynchronize-github-releases -->
                 <id>yupiik-tools</id>
                 <phase>initialize</phase>
                 <goals>
@@ -382,11 +436,11 @@
                       <artifacts>
                         <artifact>
                           <type>jar</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar</type>
@@ -398,11 +452,11 @@
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
@@ -417,7 +471,8 @@
                   </artifacts>
                 </configuration>
               </execution>
-              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@bundlebee -Psynchronize-github-releases -->
+              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@bundlebee
+                -Psynchronize-github-releases -->
                 <id>bundlebee</id>
                 <phase>initialize</phase>
                 <goals>
@@ -434,11 +489,11 @@
                       <artifacts>
                         <artifact>
                           <type>jar</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar</type>
@@ -458,11 +513,11 @@
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
@@ -485,7 +540,8 @@
                   </artifacts>
                 </configuration>
               </execution>
-              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@jaas-login-modules -Psynchronize-github-releases -->
+              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@jaas-login-modules
+                -Psynchronize-github-releases -->
                 <id>jaas-login-modules</id>
                 <phase>initialize</phase>
                 <goals>
@@ -502,11 +558,11 @@
                       <artifacts>
                         <artifact>
                           <type>jar</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar</type>
@@ -518,11 +574,11 @@
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
@@ -537,7 +593,8 @@
                   </artifacts>
                 </configuration>
               </execution>
-              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@logging -Psynchronize-github-releases -->
+              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@logging
+                -Psynchronize-github-releases -->
                 <id>logging</id>
                 <phase>initialize</phase>
                 <goals>
@@ -554,11 +611,11 @@
                       <artifacts>
                         <artifact>
                           <type>jar</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar</type>
@@ -570,11 +627,11 @@
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
@@ -589,7 +646,8 @@
                   </artifacts>
                 </configuration>
               </execution>
-              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@batch -Psynchronize-github-releases -->
+              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@batch
+                -Psynchronize-github-releases -->
                 <id>batch</id>
                 <phase>initialize</phase>
                 <goals>
@@ -606,11 +664,11 @@
                       <artifacts>
                         <artifact>
                           <type>jar</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar</type>
@@ -622,11 +680,11 @@
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
@@ -641,7 +699,8 @@
                   </artifacts>
                 </configuration>
               </execution>
-              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@uship -Psynchronize-github-releases -->
+              <execution> <!-- mvn yupiik-tools:synchronize-github-releases@uship
+                -Psynchronize-github-releases -->
                 <id>uship</id>
                 <phase>initialize</phase>
                 <goals>
@@ -658,11 +717,11 @@
                       <artifacts>
                         <artifact>
                           <type>jar</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar</type>
@@ -674,11 +733,11 @@
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
@@ -696,11 +755,11 @@
                       <artifacts>
                         <artifact>
                           <type>jar</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar</type>
@@ -712,11 +771,11 @@
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
@@ -734,11 +793,11 @@
                       <artifacts>
                         <artifact>
                           <type>jar</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar</type>
@@ -750,11 +809,11 @@
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
@@ -772,11 +831,11 @@
                       <artifacts>
                         <artifact>
                           <type>jar</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar</type>
@@ -788,11 +847,11 @@
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>pom.asc</type>
-                          <classifier/>
+                          <classifier />
                         </artifact>
                         <artifact>
                           <type>jar.asc</type>
@@ -813,7 +872,7 @@
               <force>${yupiik-tools.force}</force>
               <dryRun>${yupiik-tools.dryRun}</dryRun>
               <githubServerId>${githubServerId}</githubServerId>
-              <nexusServerId/>
+              <nexusServerId />
               <attachIfExists>true</attachIfExists>
             </configuration>
           </plugin>
